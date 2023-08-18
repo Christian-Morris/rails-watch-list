@@ -1,0 +1,9 @@
+<%= link_to "<i class='fa-solid fa-angles-left'></i>".html_safe, lists_path%>
+
+<h1>Add a Movie</h1>
+
+<%= simple_form_for [@list, @bookmark] do |l| %>
+<%= l.input :comment %>
+<%= l.association :movie %>
+<%= l.submit %>
+<% end %>

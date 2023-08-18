@@ -1,0 +1,9 @@
+<%= link_to "<i class='fa-solid fa-angles-left'></i>".html_safe, lists_path%>
+
+<h1>Add a List</h1>
+
+<%= simple_form_for @list do |l| %>
+<%= l.label :name %>
+<%= l.text_field :name %>
+<%= l.submit %>
+<% end %>
