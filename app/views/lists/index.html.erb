@@ -1,11 +1,22 @@
-<h1>All Lists</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.adsttc.com/media/images/5f7d/feb4/63c0/1772/3f00/0340/newsletter/Marcus_Wend_3.jpg?1602092715);">
+  <div class="container">
+    <h1>DemFlix: <strong>Movies</strong> to <strong>inspire</strong>!</h1>
+    <p>Create and search through lists of the best films around. Don't risk it, DemFlix it!</p>
+    <%= link_to "Create your own list!", new_list_path, class: "btn" %>
+  </div>
+</div>
 
-<ul>
-  <% @lists.each do |list| %>
-  <li>
-    <%= link_to list.name, list_path(list) %>
-  </li>
-  <% end %>
-</ul>
+<div class="container cont-border">
+  <h1>All Lists</h1>
 
-<%= link_to "Add new list", new_list_path %>
+  <div class="cards">
+    <% @lists.each do |list| %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://loremflickr.com/600/200/<%= list.name %>)">
+          <%= link_to list.name, list_path(list), style: "text-decoration: none; color: white" %>
+        </div>
+    <% end %>
+     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://uiii.ac.id/assets/images/1636690539-alfons-morales-YLSwjSy7stw-unsplash-2.jpg)">
+          <%= link_to "Add new list", new_list_path, style: "text-decoration: none; color: white" %>
+        </div>
+  </div>
+</div>

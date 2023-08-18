@@ -1,18 +1,43 @@
-<%= link_to "<i class='fa-solid fa-angles-left'></i>".html_safe, lists_path%>
+<div class="container cont-border">
+  <%= link_to "<i class='fa-solid fa-angles-left'></i>".html_safe, lists_path%>
 
-<h1>
-<%= @list.name %> List
-</h1>
+  <h1>
+  <%= @list.name %> List
+  </h1>
+  <h2>Movies</h2>
+  <div class="row">
+    <% @movies.each do |movie| %>
+    <div class=col-4>
+      <img src="<%= movie.poster_url %>" alt="<%= movie.title %> Poster" style="width: 100px">
+      <h3><%= movie.title %></h3>
+      <p><%= movie.bookmarks.find_by(list_id: params[:id]).comment %></p>
+      <%= link_to "<i class='fa-solid fa-delete-left fa-lg' style='color: #f06f19;'></i>".html_safe, bookmark_path({bookmark_id: movie.bookmarks.find_by(list_id: params[:id])} ), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </div>
+      <% end %>
+  </div>
 
-<ul>
-  <% @movies.each do |movie| %>
-  <li>
-    <img src="<%= movie.poster_url %>" alt="<%= movie.title %> Poster" style="width: 100px">
-    <h3><%= movie.title %></h3>
-    <p><%= movie.bookmarks.find_by(list_id: params[:id]).comment %></p>
-    <%= link_to "<i class='fa-solid fa-delete-left fa-lg' style='color: #f06f19;'></i>".html_safe, bookmark_path({bookmark_id: movie.bookmarks.find_by(list_id: params[:id])} ), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  </li>
-  <% end %>
-</ul>
 
-<%= link_to "Add new movie to #{@list.name}", new_list_bookmark_path(@list.id) %>
+
+  <h2>Reviews</h2>
+
+<div class="row justify-content-center" style="--bs-gutter-x: 0">
+    <% @reviews.each do |review| %>
+      <div class="card m-2 col-3">
+        <div class="card-header">Name: <%= review.name %></div>
+        <div class="card-body">
+          <h5 class="card-title"><em><%= review.rating %> stars</em></h5>
+          <p class="card-text"><%= review.comment %></p>
+      </div>
+      </div>
+    <% end %>
+    <div class="card m-2 p-4 col-11">
+     <%= render "reviews/new", list: @list, review: Review.new %>
+    </div>
+  </div>
+
+
+
+
+
+  <%= link_to 'Add new movie to this list - <i class="fa-solid fa-bookmark fa-shake" style="color: #ff2600;"></i>'.html_safe, new_list_bookmark_path(@list.id) %>
+</div>

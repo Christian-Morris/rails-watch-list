@@ -10,3 +10,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/show";
+
+.bg-blue-grey {
+  background-color: rgba($color: #4b6d72, $alpha: 0.8);
+}
+
+.cont-border {
+  padding: 24px;
+  box-shadow: 0 0 30px cyan;
+  clip-path: inset(0 -30px -30px -30px);
+}

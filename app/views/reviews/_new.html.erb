@@ -1,0 +1,8 @@
+<h3>Add a Review</h3>
+
+<%= simple_form_for [list, review] do |l| %>
+<%= l.input :name %>
+<%= l.input :comment %>
+<%= l.input :rating %>
+<%= l.submit %>
+<% end %>
